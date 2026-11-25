@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>拓奇昂科技工作室 Tachyon Tech Studio — 寻找一群不服输的伙伴！</title>
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --surface: #FAFAFA;
+      --ink: #111827;
+      --muted: #4B5563;
+      --subtle: #6B7280;
+      --line: #E5E7EB;
+      --line-strong: #111827;
+      --accent: #0077E6;
+      --accent-soft: rgba(0, 119, 230, 0.08);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      background: var(--bg);
+    }
+
+    /* 顶部导航栏 */
+    header.topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      height: 56px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+
+    .brand-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mini-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    nav.nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    nav.nav-links a {
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    nav.nav-links a:hover {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+    }
+
+    /* 首屏 LOGO 与核心宣言 */
+    .hero {
+      padding: 56px 24px 48px;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+    }
+
+    .doc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--subtle);
+      padding-bottom: 28px;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo-lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .logo-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 14px;
+    }
+
+    .logo-img {
+      width: 112px;
+      height: auto;
+      display: block;
+    }
+
+    .logo-en-stack {
+      text-align: center;
+      line-height: 1.15;
+    }
+
+    .logo-en-top {
+      font-size: clamp(26px, 4.2vw, 38px);
+      font-weight: 500;
+      color: #374151;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-en-sub {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 400;
+      color: #374151;
+      margin-top: 2px;
+    }
+
+    .logo-cn {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      color: #374151;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    .logo-motto {
+      font-size: clamp(15px, 2.2vw, 18px);
+      color: #4B5563;
+      letter-spacing: 0.04em;
+      margin-top: 8px;
+    }
+
+    .hero-subtitle-bar {
+      margin-top: 36px;
+      padding: 18px 24px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(19px, 2.8vw, 24px);
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-subtitle::before {
+      content: "// ";
+      font-family: var(--mono);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--ink);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid var(--ink);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .cta-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* 章节通用结构 */
+    section.chapter {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .chapter-header {
+      padding: 28px 24px 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .chapter-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .chapter-code {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--subtle);
+    }
+
+    /* 一、价值观网格 */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .value-cell {
+      padding: 24px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+
+    .value-cell:nth-child(2n) {
+      border-right: none;
+    }
+
+    .value-cell:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
+
+    .item-index {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .value-text {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .value-note {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    /* 二、我们的工作列表 */
+    .work-list {
+      list-style: none;
+    }
+
+    .work-row {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+
+    .work-row:last-child {
+      border-bottom: none;
+    }
+
+    .work-num {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      padding-top: 2px;
+    }
+
+    .work-desc {
+      font-size: 15.5px;
+      color: var(--ink);
+    }
+
+    .stack-tags {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stack-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 2px 8px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: #1F2937;
+    }
+
+    /* 三、免费特权 */
+    .perks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .perk-cell {
+      padding: 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .perk-cell:last-child {
+      border-right: none;
+    }
+
+    .perk-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .perk-rule {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .logic-box {
+      margin: 0 24px 24px;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+      font-size: 13.5px;
+      color: #1F2937;
+    }
+
+    .logic-box strong {
+      font-family: var(--mono);
+      color: var(--ink);
+    }
+
+    /* 四、加入我们 */
+    .join-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+    }
+
+    .contact-col {
+      padding: 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .contact-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .contact-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--subtle);
+      margin-bottom: 4px;
+    }
+
+    .contact-value-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .copy-btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 3px 9px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      border-color: var(--ink);
+      background: var(--surface);
+    }
+
+    .qr-col {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--surface);
+    }
+
+    .qr-frame {
+      width: 176px;
+      height: 176px;
+      border: 1px solid var(--line-strong);
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      margin-bottom: 12px;
+    }
+
+    .qr-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .qr-caption {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .qr-sub {
+      font-size: 12px;
+      color: var(--subtle);
+      margin-top: 4px;
+    }
+
+    /* 自我介绍暗号生成器 */
+    .generator-box {
+      padding: 24px;
+      border-top: 1px solid var(--line);
+      background: var(--bg);
+    }
+
+    .gen-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .gen-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .gen-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .gen-controls input,
+    .gen-controls select {
+      height: 36px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 13px;
+      font-family: var(--sans);
+    }
+
+    .gen-controls input {
+      min-width: 180px;
+    }
+
+    .gen-output {
+      width: 100%;
+      min-height: 76px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--ink);
+      resize: vertical;
+      margin-bottom: 10px;
+    }
+
+    footer.site-footer {
+      padding: 20px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--subtle);
+      background: var(--surface);
+    }
+
+    @media (max-width: 768px) {
+      nav.nav-links {
+        display: none;
+      }
+      .values-grid,
+      .perks-grid,
+      .join-grid {
+        grid-template-columns: 1fr;
+      }
+      .value-cell,
+      .perk-cell,
+      .contact-col {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+      .perk-cell:last-child,
+      .contact-col {
+        border-bottom: none;
+      }
+      .work-row {
+        grid-template-columns: 44px 1fr;
+        padding: 16px 18px;
+      }
+      .hero,
+      .chapter-header,
+      .value-cell,
+      .perk-cell,
+      .contact-col,
+      .qr-col,
+      .generator-box {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#top" class="brand-mini">
+        <span class="brand-mini-dot"></span>
+        <span>拓奇昂科技工作室 · Tachyon Tech Studio</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#values">一、价值观</a>
+        <a href="#work">二、我们的工作</a>
+        <a href="#perks">三、免费特权</a>
+        <a href="#join">四、加入我们</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <!-- 首屏 LOGO 与副标题 -->
+    <section class="hero">
+      <div class="doc-meta">
+        <span>DOC // TACHYON-TECH-STUDIO</span>
+        <span>PRINCIPLE: 要相信逻辑，不要相信故事。</span>
+      </div>
+
+      <div class="logo-lockup">
+        <div class="logo-main-row">
+          <!-- 将您的原图 Logo 命名为 logo.png 放在同一目录即可显示；未找到时自动回退为内联 SVG -->
+          <img
+            src="logo.png"
+            alt="拓奇昂科技工作室 Logo"
+            class="logo-img"
+            onerror="this.style.display='none'; document.getElementById('fallbackLogoSvg').style.display='block';"
+          />
+          <svg
+            id="fallbackLogoSvg"
+            class="logo-img"
+            style="display:none;"
+            viewBox="0 0 140 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-label="拓奇昂科技工作室图标"
+          >
+            <polygon points="10,112 64,54 51,54 31,74" fill="#0077E6" />
+            <polygon points="14,92 44,61 31,61" fill="#0077E6" />
+            <polygon points="31,49 82,49 62,67 21,67" fill="#0077E6" />
+            <polygon points="52,37 128,31 102,86 94,65 20,115 84,48" fill="#0077E6" />
+          </svg>
+
+          <div class="logo-en-stack">
+            <div class="logo-en-top">Tachyon Tech</div>
+            <div class="logo-en-sub">Studio</div>
+          </div>
+        </div>
+
+        <div class="logo-cn">拓奇昂科技工作室</div>
+        <div class="logo-motto">要相信逻辑，不要相信故事。</div>
+      </div>
+
+      <div class="hero-subtitle-bar">
+        <h1 class="hero-subtitle">寻找一群不服输的伙伴!</h1>
+        <a href="#join" class="cta-btn">立即查看加入方式 →</a>
+      </div>
+    </section>
+
+    <!-- 一、我们工作室的价值观 -->
+    <section id="values" class="chapter">
+      <div class="chapter-header">
+        <h2 class="chapter-title">一、我们工作室的价值观</h2>
+        <span class="chapter-code">01 / VALUES</span>
+      </div>
+      <div class="values-grid">
+        <div class="value-cell">
+          <span class="item-index">01</span>
+          <div class="value-text">1.人是目的，尊重人本身。</div>
+          <p class="value-note">不把人当作工具或耗材，尊重个体边界、独立思考与真实处境。</p>
+        </div>
+        <div class="value-cell">
+          <span class="item-index">02</span>
+          <div class="value-text">2.努力学习，补齐技术短板。</div>
+          <p class="value-note">不懂就学、不会就练，用扎实的技术能力消除认知与执行盲区。</p>
+        </div>
+        <div class="value-cell">
+          <span class="item-index">03</span>
+          <div class="value-text">3.最小成本，探索MVP。</div>
+          <p class="value-note">先做出能跑通核心逻辑的最小可行产品，用现实反馈代替空想。</p>
+        </div>
+        <div class="value-cell">
+          <span class="item-index">04</span>
+          <div class="value-text">4.寻找一群不服输的伙伴!</div>
+          <p class="value-note">不甘平庸、敢于硬碰硬解决难题，愿意和靠谱的人一起死磕到底。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 二、我们的工作 -->
+    <section id="work" class="chapter">
+      <div class="chapter-header">
+        <h2 class="chapter-title">二、我们的工作</h2>
+        <span class="chapter-code">02 / WORKFLOW</span>
+      </div>
+      <ul class="work-list">
+        <li class="work-row">
+          <span class="work-num">01</span>
+          <div>
+            <div class="work-desc">1.在学业正常进行的情况下，进行计算机入门并自学任一常见的热门编程语言:Python、Java、C、C++、低代码开发、PHP等</div>
+            <div class="stack-tags">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">Java</span>
+              <span class="stack-tag">C</span>
+              <span class="stack-tag">C++</span>
+              <span class="stack-tag">低代码开发</span>
+              <span class="stack-tag">PHP</span>
+            </div>
+          </div>
+        </li>
+        <li class="work-row">
+          <span class="work-num">02</span>
+          <div class="work-desc">2.取得一个不错的学历。</div>
+        </li>
+        <li class="work-row">
+          <span class="work-num">03</span>
+          <div class="work-desc">3.学习市场营销能力、社会沟通能力、沟通技巧</div>
+        </li>
+        <li class="work-row">
+          <span class="work-num">04</span>
+          <div class="work-desc">4.一起学习如何寻找并分析市场痛点。</div>
+        </li>
+        <li class="work-row">
+          <span class="work-num">05</span>
+          <div class="work-desc">5.关心前沿AI科技发展。</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 三、加入此工作室可享的免费特权 -->
+    <section id="perks" class="chapter">
+      <div class="chapter-header">
+        <h2 class="chapter-title">三、加入此工作室可享的免费特权</h2>
+        <span class="chapter-code">03 / PRIVILEGES</span>
+      </div>
+      <div class="perks-grid">
+        <div class="perk-cell">
+          <span class="item-index">PRIVILEGE 01</span>
+          <div class="perk-title">1.每次可借阅任意图书1-5本不等</div>
+          <p class="perk-rule">按需借阅技术、商业与逻辑相关书籍，用完按期流转给下一位伙伴。</p>
+        </div>
+        <div class="perk-cell">
+          <span class="item-index">PRIVILEGE 02</span>
+          <div class="perk-title">2.两台计算机可任意租用30天不等</div>
+          <p class="perk-rule">用于学习编程、跑实验或开发 MVP，到期按约定交接或续借。</p>
+        </div>
+        <div class="perk-cell">
+          <span class="item-index">PRIVILEGE 03</span>
+          <div class="perk-title">3.提供免费住宿、三餐</div>
+          <p class="perk-rule">在工作室线下集训或驻点推进项目期间提供免费住宿与三餐保障。</p>
+        </div>
+      </div>
+
+      <div class="logic-box">
+        <strong>准入与流转规则：</strong>所有免费特权面向认同工作室价值观、经过基础沟通与逻辑评估、并积极参与学习或 MVP 推进的伙伴开放，遵循“按需借用、清晰交接、权责对等”的原则。
+      </div>
+    </section>
+
+    <!-- 四、加入我们 -->
+    <section id="join" class="chapter">
+      <div class="chapter-header">
+        <h2 class="chapter-title">四、加入我们</h2>
+        <span class="chapter-code">04 / JOIN US</span>
+      </div>
+
+      <div class="join-grid">
+        <div class="contact-col">
+          <div class="contact-item">
+            <div class="contact-label">咨询方式 · 电话</div>
+            <div class="contact-value-row">
+              <a href="tel:15833867401">15833867401</a>
+              <button type="button" class="copy-btn" onclick="copyText('15833867401', this)">复制号码</button>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-label">咨询方式 · 邮箱 1</div>
+            <div class="contact-value-row">
+              <a href="mailto:xzjz333@qq.com">xzjz333@qq.com</a>
+              <button type="button" class="copy-btn" onclick="copyText('xzjz333@qq.com', this)">复制邮箱</button>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-label">咨询方式 · 邮箱 2</div>
+            <div class="contact-value-row">
+              <a href="mailto:jinghexu7@gmail.com">jinghexu7@gmail.com</a>
+              <button type="button" class="copy-btn" onclick="copyText('jinghexu7@gmail.com', this)">复制邮箱</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="qr-col">
+          <div class="qr-frame">
+            <!-- 将您的工作室群二维码图片命名为 qrcode.png 放在同一目录即可显示 -->
+            <img
+              src="qrcode.png"
+              alt="工作室群二维码"
+              onerror="this.style.display='none'; document.getElementById('qrPlaceholder').style.display='flex';"
+            />
+            <div id="qrPlaceholder" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; flex-direction:column; font-size:12px; color:#6B7280; border:1px dashed #D1D5DB;">
+              <span>群二维码占位</span>
+              <span style="margin-top:4px; font-family:var(--mono);">放入 qrcode.png</span>
+            </div>
+          </div>
+          <div class="qr-caption">或工作室群二维码咨询。</div>
+          <div class="qr-sub">扫码入群或通过电话 / 邮箱联系</div>
+        </div>
+      </div>
+
+      <!-- 自我介绍 / 加群验证文案生成器 -->
+      <div class="generator-box">
+        <div class="gen-title">快速生成自我介绍 / 加群验证文案</div>
+        <div class="gen-desc">填好基础信息后一键复制，发到群里或邮件中方便快速沟通：</div>
+        <div class="gen-controls">
+          <input id="userName" type="text" placeholder="你的称呼（如：小陈）" />
+          <input id="userStage" type="text" placeholder="当前阶段（如：高二 / 大一）" />
+          <select id="userDirection">
+            <option value="Python / AI 应用">方向：Python / AI 应用</option>
+            <option value="Java / C / C++ / PHP">方向：Java / C / C++ / PHP</option>
+            <option value="低代码开发与 MVP 探索">方向：低代码开发与 MVP 探索</option>
+            <option value="市场痛点分析与沟通协作">方向：市场痛点分析与沟通协作</option>
+          </select>
+        </div>
+        <textarea id="introOutput" class="gen-output" readonly></textarea>
+        <button type="button" class="cta-btn" onclick="copyIntro()">一键复制自我介绍</button>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>拓奇昂科技工作室 Tachyon Tech Studio</span>
+      <span>要相信逻辑，不要相信故事。</span>
+    </footer>
+  </main>
+
+  <script>
+    function copyText(text, btn) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          const oldText = btn.textContent;
+          btn.textContent = "已复制";
+          setTimeout(() => { btn.textContent = oldText; }, 1500);
+        });
+      } else {
+        const temp = document.createElement("textarea");
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        document.body.removeChild(temp);
+        const oldText = btn.textContent;
+        btn.textContent = "已复制";
+        setTimeout(() => { btn.textContent = oldText; }, 1500);
+      }
+    }
+
+    const nameInput = document.getElementById("userName");
+    const stageInput = document.getElementById("userStage");
+    const dirSelect = document.getElementById("userDirection");
+    const outputArea = document.getElementById("introOutput");
+
+    function updateIntro() {
+      const name = (nameInput.value || "伙伴").trim();
+      const stage = (stageInput.value || "在读学生").trim();
+      const dir = dirSelect.value;
+      outputArea.value = `你好，我是${name}，目前是${stage}。认同“要相信逻辑，不要相信故事”，想在保证正常学业的同时推进“${dir}”与 MVP 探索，希望加入拓奇昂科技工作室交流学习。`;
+    }
+
+    nameInput.addEventListener("input", updateIntro);
+    stageInput.addEventListener("input", updateIntro);
+    dirSelect.addEventListener("change", updateIntro);
+    updateIntro();
+
+    function copyIntro() {
+      const btn = document.querySelector(".generator-box .cta-btn");
+      copyText(outputArea.value, btn);
+    }
+  </script>
+</body>
+</html>
+
